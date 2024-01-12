@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     },
     pageTitle: {
         color: COLORS.black,
-        fontSize: RFPercentage(5)
+        fontSize: RFPercentage(5),
+        marginTop: wp('5%')
     }
 });
 

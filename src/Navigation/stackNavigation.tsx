@@ -12,7 +12,7 @@ const StackNavigation = () => (
                 name={item.name}
                 component={item.component}
                 key={Date.now()}
-                options={{ headerShown: false }}
+                options={item.options}
             />
         ))}
     </Stack.Navigator>

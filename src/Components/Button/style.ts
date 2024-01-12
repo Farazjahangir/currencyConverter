@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: COLORS.white
+    },
+    disable: {
+        backgroundColor: COLORS.disable
     }
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert } from 'react-native';
 
 import TextInput from '../../Components/TextInput';
 import RateBox from '../../Components/RateBox';
@@ -22,6 +22,7 @@ type Rates = {
 const Rates = () => {
     const [userInput, setInput] = useState<string>('');
     const [rates, setRates] = useState<Rates>();
+    const [loading, setLoading] = useState(false)
 
     const onInputChange = (value: string) => {
         setInput(value);
@@ -41,16 +42,23 @@ const Rates = () => {
     );
 
     const onConvert = async () => {
-        const res = await getRates();
-        const rates = Object.keys(res.conversion_rates).map(item => ({
-            code: item,
-            rate: res.conversion_rates[item]
-        }))
-        const payload = {
-            amount: Number(userInput),
-            rates: rates
+        try {
+            setLoading(true)
+            const res = await getRates();
+            const rates = Object.keys(res.conversion_rates).map(item => ({
+                code: item,
+                rate: res.conversion_rates[item]
+            }))
+            const payload = {
+                amount: Number(userInput),
+                rates: rates
+            }
+            setRates(payload);
+        } catch(e: any) {
+            Alert.alert(e.message)
+        } finally {
+            setLoading(false)
         }
-        setRates(payload);
     };
 
     return (
@@ -59,10 +67,10 @@ const Rates = () => {
                 <Text style={styles.pageTitle}>Rates</Text>
                 <TextInput value={userInput} onChangeText={onInputChange} />
                 <View style={{ alignItems: 'flex-end' }}>
-                    <Button text="Convert" onPress={onConvert} />
+                    <Button text="Convert" onPress={onConvert} loading={loading} disabled={!userInput} />
                 </View>
             </View>
-            <View style={styles.conversionListBox}>{renderList()}</View>
+            {!!rates && <View style={styles.conversionListBox}>{renderList()}</View>}
         </View>
     );
 };

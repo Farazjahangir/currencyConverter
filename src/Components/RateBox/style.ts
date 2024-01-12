@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: wp('5%'),
+        paddingHorizontal: wp('6%'),
+        paddingVertical: wp('2%'),
         borderWidth: 1,
         borderColor: '#57606f',
         backgroundColor: COLORS.white,
@@ -19,15 +20,17 @@ const styles = StyleSheet.create({
     },
    currencyCode: {
     color: COLORS.black,
-    fontSize: RFPercentage(4.8)
+    fontSize: RFPercentage(3.9)
    },
    totalAmount: {
     color: COLORS.black,
-    fontSize: RFPercentage(2.7)
+    fontSize: RFPercentage(2.7),
+    textAlign: 'right'
    },
    detailsText:{
     color: COLORS.black,
-    fontSize: RFPercentage(2)
+    fontSize: RFPercentage(2),
+    textAlign: 'right'
    }
 });
 
