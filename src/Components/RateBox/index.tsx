@@ -21,9 +21,9 @@ const RateBox = ({
         <View style={styles.contentBox}>
             <Text style={styles.currencyCode}>{currencyCode}</Text>
             <View>
-                <Text style={styles.totalAmount}>{amount}</Text>
-                <Text style={styles.detailsText}>1 EUR = {conversionRate}{currencyCode}</Text>
-                <Text style={styles.detailsText}>1 {currencyCode} = {(1/conversionRate).toFixed(4)} EUR</Text>
+                <Text style={styles.totalAmount}>{amount.toFixed(2)}</Text>
+                <Text style={styles.detailsText}>1 EUR = {(conversionRate).toFixed(2)} {currencyCode}</Text>
+                <Text style={styles.detailsText}>1 {currencyCode} = {(1/conversionRate).toFixed(2)} EUR</Text>
             </View>
         </View>
     )
